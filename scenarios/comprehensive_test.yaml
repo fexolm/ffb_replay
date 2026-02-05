@@ -1,0 +1,602 @@
+# Comprehensive FFB test with corner cases and all effects
+name: "Comprehensive FFB Test"
+description: "Tests all effect types with edge cases including zero, max, negative values"
+loop_forever: false
+repeat_count: 1
+
+steps:
+  # ==================== CONSTANT FORCE TESTS ====================
+  
+  # 1. Constant: Zero magnitude
+  
+  - effect:
+      type: constant
+      duration: 500
+      gain: 10000
+      magnitude: 0
+      direction: 0
+
+  # 2. Constant: Maximum negative magnitude
+
+  - effect:
+      type: constant
+      duration: 500
+      gain: 10000
+      magnitude: -10000
+      direction: 0
+
+  # 3. Constant: Maximum positive magnitude
+
+  - effect:
+      type: constant
+      duration: 500
+      gain: 10000
+      magnitude: 10000
+      direction: 0
+
+  # 4. Constant: Small magnitude (near zero)
+
+  - effect:
+      type: constant
+      duration: 500
+      gain: 10000
+      magnitude: 100
+      direction: 0
+
+  # 5. Constant: Zero gain (should produce no force)
+
+  - effect:
+      type: constant
+      duration: 500
+      gain: 0
+      magnitude: 10000
+      direction: 0
+
+  # 6. Constant: Very short duration
+
+  - effect:
+      type: constant
+      duration: 10
+      gain: 10000
+      magnitude: 5000
+      direction: 0
+
+  # 7. Constant: Long duration
+
+  - effect:
+      type: constant
+      duration: 10000
+      gain: 5000
+      magnitude: 3000
+      direction: 0
+
+  # ==================== PERIODIC EFFECTS - ALL WAVE TYPES ====================
+
+  # 8. Sine wave: Standard
+
+  - effect:
+      type: periodic
+      duration: 1000
+      gain: 8000
+      wave_type: sine
+      magnitude: 5000
+      period: 200
+      offset: 0
+      phase: 0
+
+  # 9. Square wave: Standard
+
+  - effect:
+      type: periodic
+      duration: 1000
+      gain: 8000
+      wave_type: square
+      magnitude: 5000
+      period: 300
+      offset: 0
+      phase: 0
+
+  # 10. Triangle wave: Standard
+
+  - effect:
+      type: periodic
+      duration: 1000
+      gain: 8000
+      wave_type: triangle
+      magnitude: 5000
+      period: 250
+      offset: 0
+      phase: 0
+
+  # 11. Sawtooth Up: Standard
+
+  - effect:
+      type: periodic
+      duration: 1000
+      gain: 8000
+      wave_type: sawtooth_up
+      magnitude: 5000
+      period: 400
+      offset: 0
+      phase: 0
+
+  # 12. Sawtooth Down: Standard
+
+  - effect:
+      type: periodic
+      duration: 1000
+      gain: 8000
+      wave_type: sawtooth_down
+      magnitude: 5000
+      period: 400
+      offset: 0
+      phase: 0
+
+  # 13. Sine: Maximum magnitude
+
+  - effect:
+      type: periodic
+      duration: 1000
+      gain: 10000
+      wave_type: sine
+      magnitude: 10000
+      period: 100
+      offset: 0
+      phase: 0
+
+  # 14. Sine: Zero magnitude
+
+  - effect:
+      type: periodic
+      duration: 500
+      gain: 10000
+      wave_type: sine
+      magnitude: 0
+      period: 200
+      offset: 0
+      phase: 0
+
+  # 15. Sine: With positive offset
+
+  - effect:
+      type: periodic
+      duration: 1000
+      gain: 8000
+      wave_type: sine
+      magnitude: 3000
+      period: 200
+      offset: 5000
+      phase: 0
+
+  # 16. Sine: With negative offset
+
+  - effect:
+      type: periodic
+      duration: 1000
+      gain: 8000
+      wave_type: sine
+      magnitude: 3000
+      period: 200
+      offset: -5000
+      phase: 0
+
+  # 17. Sine: With phase shift (90 degrees = 9000)
+
+  - effect:
+      type: periodic
+      duration: 1000
+      gain: 8000
+      wave_type: sine
+      magnitude: 5000
+      period: 200
+      offset: 0
+      phase: 9000
+
+  # 18. Sine: Very fast period
+
+  - effect:
+      type: periodic
+      duration: 1000
+      gain: 8000
+      wave_type: sine
+      magnitude: 5000
+      period: 20
+      offset: 0
+      phase: 0
+
+  # 19. Sine: Very slow period
+
+  - effect:
+      type: periodic
+      duration: 2000
+      gain: 8000
+      wave_type: sine
+      magnitude: 5000
+      period: 2000
+      offset: 0
+      phase: 0
+
+  # ==================== RAMP EFFECTS ====================
+
+  # 20. Ramp: Zero to max
+
+  - effect:
+      type: ramp
+      duration: 1000
+      gain: 10000
+      start_magnitude: 0
+      end_magnitude: 10000
+
+  # 21. Ramp: Max to zero
+
+  - effect:
+      type: ramp
+      duration: 1000
+      gain: 10000
+      start_magnitude: 10000
+      end_magnitude: 0
+
+  # 22. Ramp: Negative to positive
+
+  - effect:
+      type: ramp
+      duration: 1000
+      gain: 10000
+      start_magnitude: -10000
+      end_magnitude: 10000
+
+  # 23. Ramp: Positive to negative
+
+  - effect:
+      type: ramp
+      duration: 1000
+      gain: 10000
+      start_magnitude: 10000
+      end_magnitude: -10000
+
+  # 24. Ramp: Same start and end (constant)
+
+  - effect:
+      type: ramp
+      duration: 1000
+      gain: 10000
+      start_magnitude: 5000
+      end_magnitude: 5000
+
+  # 25. Ramp: Small change
+
+  - effect:
+      type: ramp
+      duration: 1000
+      gain: 10000
+      start_magnitude: 4900
+      end_magnitude: 5100
+
+  # ==================== CONDITION EFFECTS - ALL TYPES ====================
+
+  # 26. Spring: Standard centered
+
+  - effect:
+      type: condition
+      duration: 1500
+      gain: 10000
+      condition_type: spring
+      x_axis:
+        offset: 0
+        positive_coefficient: 5000
+        negative_coefficient: 5000
+        positive_saturation: 10000
+        negative_saturation: 10000
+        dead_band: 0
+
+  # 27. Spring: Maximum coefficients
+
+  - effect:
+      type: condition
+      duration: 1500
+      gain: 10000
+      condition_type: spring
+      x_axis:
+        offset: 0
+        positive_coefficient: 10000
+        negative_coefficient: 10000
+        positive_saturation: 10000
+        negative_saturation: 10000
+        dead_band: 0
+
+  # 28. Spring: Zero coefficients
+
+  - effect:
+      type: condition
+      duration: 500
+      gain: 10000
+      condition_type: spring
+      x_axis:
+        offset: 0
+        positive_coefficient: 0
+        negative_coefficient: 0
+        positive_saturation: 10000
+        negative_saturation: 10000
+        dead_band: 0
+
+  # 29. Spring: Asymmetric coefficients
+
+  - effect:
+      type: condition
+      duration: 1500
+      gain: 10000
+      condition_type: spring
+      x_axis:
+        offset: 0
+        positive_coefficient: 8000
+        negative_coefficient: 3000
+        positive_saturation: 10000
+        negative_saturation: 10000
+        dead_band: 0
+
+  # 30. Spring: With positive offset
+
+  - effect:
+      type: condition
+      duration: 1500
+      gain: 10000
+      condition_type: spring
+      x_axis:
+        offset: 5000
+        positive_coefficient: 5000
+        negative_coefficient: 5000
+        positive_saturation: 10000
+        negative_saturation: 10000
+        dead_band: 0
+
+  # 31. Spring: With negative offset
+
+  - effect:
+      type: condition
+      duration: 1500
+      gain: 10000
+      condition_type: spring
+      x_axis:
+        offset: -5000
+        positive_coefficient: 5000
+        negative_coefficient: 5000
+        positive_saturation: 10000
+        negative_saturation: 10000
+        dead_band: 0
+
+  # 32. Spring: With large dead band
+
+  - effect:
+      type: condition
+      duration: 1500
+      gain: 10000
+      condition_type: spring
+      x_axis:
+        offset: 0
+        positive_coefficient: 5000
+        negative_coefficient: 5000
+        positive_saturation: 10000
+        negative_saturation: 10000
+        dead_band: 3000
+
+  # 33. Spring: Low saturation
+
+  - effect:
+      type: condition
+      duration: 1500
+      gain: 10000
+      condition_type: spring
+      x_axis:
+        offset: 0
+        positive_coefficient: 10000
+        negative_coefficient: 10000
+        positive_saturation: 2000
+        negative_saturation: 2000
+        dead_band: 0
+
+  # 34. Spring: Asymmetric saturation
+
+  - effect:
+      type: condition
+      duration: 1500
+      gain: 10000
+      condition_type: spring
+      x_axis:
+        offset: 0
+        positive_coefficient: 5000
+        negative_coefficient: 5000
+        positive_saturation: 8000
+        negative_saturation: 3000
+        dead_band: 0
+
+  # 35. Damper: Standard
+
+  - effect:
+      type: condition
+      duration: 1500
+      gain: 10000
+      condition_type: damper
+      x_axis:
+        offset: 0
+        positive_coefficient: 5000
+        negative_coefficient: 5000
+        positive_saturation: 10000
+        negative_saturation: 10000
+        dead_band: 0
+
+  # 36. Damper: Maximum
+
+  - effect:
+      type: condition
+      duration: 1500
+      gain: 10000
+      condition_type: damper
+      x_axis:
+        offset: 0
+        positive_coefficient: 10000
+        negative_coefficient: 10000
+        positive_saturation: 10000
+        negative_saturation: 10000
+        dead_band: 0
+
+  # 37. Damper: With dead band
+
+  - effect:
+      type: condition
+      duration: 1500
+      gain: 10000
+      condition_type: damper
+      x_axis:
+        offset: 0
+        positive_coefficient: 7000
+        negative_coefficient: 7000
+        positive_saturation: 10000
+        negative_saturation: 10000
+        dead_band: 1000
+
+  # 38. Friction: Standard
+
+  - effect:
+      type: condition
+      duration: 1500
+      gain: 10000
+      condition_type: friction
+      x_axis:
+        offset: 0
+        positive_coefficient: 5000
+        negative_coefficient: 5000
+        positive_saturation: 10000
+        negative_saturation: 10000
+        dead_band: 0
+
+  # 39. Friction: Maximum
+
+  - effect:
+      type: condition
+      duration: 1500
+      gain: 10000
+      condition_type: friction
+      x_axis:
+        offset: 0
+        positive_coefficient: 10000
+        negative_coefficient: 10000
+        positive_saturation: 10000
+        negative_saturation: 10000
+        dead_band: 0
+
+  # 40. Inertia: Standard
+
+  - effect:
+      type: condition
+      duration: 1500
+      gain: 10000
+      condition_type: inertia
+      x_axis:
+        offset: 0
+        positive_coefficient: 5000
+        negative_coefficient: 5000
+        positive_saturation: 10000
+        negative_saturation: 10000
+        dead_band: 0
+
+  # 41. Inertia: Maximum
+
+  - effect:
+      type: condition
+      duration: 1500
+      gain: 10000
+      condition_type: inertia
+      x_axis:
+        offset: 0
+        positive_coefficient: 10000
+        negative_coefficient: 10000
+        positive_saturation: 10000
+        negative_saturation: 10000
+        dead_band: 0
+
+  # ==================== EDGE CASES ====================
+
+  # 42. Constant: Minimum positive value
+
+  - effect:
+      type: constant
+      duration: 500
+      gain: 10000
+      magnitude: 1
+      direction: 0
+
+  # 43. Constant: Minimum negative value
+
+  - effect:
+      type: constant
+      duration: 500
+      gain: 10000
+      magnitude: -1
+      direction: 0
+
+  # 44. Spring: All minimum values (non-zero)
+
+  - effect:
+      type: condition
+      duration: 500
+      gain: 10000
+      condition_type: spring
+      x_axis:
+        offset: 1
+        positive_coefficient: 1
+        negative_coefficient: 1
+        positive_saturation: 1
+        negative_saturation: 1
+        dead_band: 1
+
+  # 45. Spring: Maximum dead band
+
+  - effect:
+      type: condition
+      duration: 1500
+      gain: 10000
+      condition_type: spring
+      x_axis:
+        offset: 0
+        positive_coefficient: 10000
+        negative_coefficient: 10000
+        positive_saturation: 10000
+        negative_saturation: 10000
+        dead_band: 10000
+
+  # 46. Periodic: Maximum offset with magnitude
+
+  - effect:
+      type: periodic
+      duration: 1000
+      gain: 10000
+      wave_type: sine
+      magnitude: 5000
+      period: 200
+      offset: 10000
+      phase: 0
+
+  # 47. Ramp: Maximum range
+
+  - effect:
+      type: ramp
+      duration: 2000
+      gain: 10000
+      start_magnitude: -10000
+      end_magnitude: 10000
+
+  # 48. Combined test: Spring with offset and dead band
+
+  - effect:
+      type: condition
+      duration: 1500
+      gain: 8000
+      condition_type: spring
+      x_axis:
+        offset: 3000
+        positive_coefficient: 6000
+        negative_coefficient: 4000
+        positive_saturation: 7000
+        negative_saturation: 5000
+        dead_band: 800
+

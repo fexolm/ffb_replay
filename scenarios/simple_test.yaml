@@ -1,0 +1,83 @@
+# Simple test of all effect types
+name: "Basic Effect Test"
+description: "Sequential demonstration of all main FFB effect types"
+loop_forever: false
+repeat_count: 1
+
+steps:
+  # 1. Constant force left
+  - effect:
+      type: constant
+      duration: 1500
+      gain: 3000
+      magnitude: -8000
+      direction: 0
+
+  # 2. Constant force right
+
+  - effect:
+      type: constant
+      duration: 1500
+      gain: 3000
+      magnitude: 8000
+      direction: 0
+
+  # 3. Sine vibration - stronger and slower
+
+  - effect:
+      type: periodic
+      duration: 3000
+      gain: 3000
+      wave_type: sine
+      magnitude: 3000
+      period: 300
+      offset: 0
+      phase: 0
+
+  # 4. Square wave (sharp impacts) - maximum force
+
+  - effect:
+      type: periodic
+      duration: 3000
+      gain: 3000
+      wave_type: square
+      magnitude: 3000
+      period: 500
+
+  # 5. Ramp (smooth force increase) - full range
+
+  - effect:
+      type: ramp
+      duration: 4000
+      gain: 3000
+      start_magnitude: -3000
+      end_magnitude: 3000
+
+  # 6. Spring effect (return to center) - maximum coefficients
+
+  - effect:
+      type: condition
+      duration: 4000
+      gain: 3000
+      condition_type: spring
+      x_axis:
+        offset: 0
+        positive_coefficient: 3000
+        negative_coefficient: 3000
+        positive_saturation: 3000
+        negative_saturation: 3000
+        dead_band: 0
+
+  # 7. Damper (movement resistance) - maximum
+
+  - effect:
+      type: condition
+      duration: 3000
+      gain: 3000
+      condition_type: damper
+      x_axis:
+        positive_coefficient: 3000
+        negative_coefficient: 3000
+        positive_saturation: 3000
+        negative_saturation: 3000
+

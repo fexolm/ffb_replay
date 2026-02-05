@@ -1,0 +1,61 @@
+# Envelope test
+name: "Envelope Test"
+description: "Demonstration of smooth attack and fade of effects"
+loop_forever: false
+repeat_count: 1
+
+steps:
+  # Constant force with smooth fade-in
+  - effect:
+      type: constant
+      duration: 3000
+      gain: 8000
+      magnitude: 7000
+      envelope:
+        attack_time: 1000
+        attack_level: 1000
+        fade_time: 1000
+        fade_level: 1000
+
+  # Sine with fast attack and slow fade
+
+  - effect:
+      type: periodic
+      duration: 4000
+      gain: 7000
+      wave_type: sine
+      magnitude: 6000
+      period: 150
+      envelope:
+        attack_time: 500
+        attack_level: 0
+        fade_time: 2000
+        fade_level: 0
+
+  # Ramp with envelope
+
+  - effect:
+      type: ramp
+      duration: 4000
+      gain: 8000
+      start_magnitude: 0
+      end_magnitude: 8000
+      envelope:
+        attack_time: 800
+        attack_level: 0
+        fade_time: 800
+        fade_level: 0
+
+  # Sharp attack, smooth fade
+
+  - effect:
+      type: constant
+      duration: 3000
+      gain: 9000
+      magnitude: -7000
+      envelope:
+        attack_time: 100
+        attack_level: 5000
+        fade_time: 1500
+        fade_level: 0
+

@@ -1,0 +1,112 @@
+# Racing scenario simulation
+name: "Racing Demo"
+description: "Simulation of various situations on a race track"
+loop_forever: false
+repeat_count: 1
+
+steps:
+  # Start - light engine vibration
+  - effect:
+      type: periodic
+      duration: 2000
+      gain: 3000
+      wave_type: sine
+      magnitude: 2000
+      period: 50
+
+  # Acceleration - light resistance
+
+  - effect:
+      type: constant
+      duration: 1500
+      gain: 4000
+      magnitude: 2000
+
+  # Left turn - centripetal force
+
+  - effect:
+      type: constant
+      duration: 2000
+      gain: 7000
+      magnitude: -6000
+      envelope:
+        attack_time: 500
+        attack_level: 0
+        fade_time: 500
+        fade_level: 0
+
+  # Straight - spring return
+
+  - effect:
+      type: condition
+      duration: 1500
+      gain: 6000
+      condition_type: spring
+      x_axis:
+        positive_coefficient: 5000
+        negative_coefficient: 5000
+
+  # Right turn - sharper
+
+  - effect:
+      type: constant
+      duration: 1800
+      gain: 8000
+      magnitude: 7000
+      envelope:
+        attack_time: 300
+        attack_level: 0
+        fade_time: 400
+        fade_level: 0
+
+  # Curb hit - vibration
+
+  - effect:
+      type: periodic
+      duration: 800
+      gain: 9000
+      wave_type: square
+      magnitude: 7000
+      period: 80
+
+  # Series of small bumps - triangle wave
+
+  - effect:
+      type: periodic
+      duration: 1500
+      gain: 6000
+      wave_type: triangle
+      magnitude: 4000
+      period: 150
+
+  # Hard braking - increasing resistance
+
+  - effect:
+      type: ramp
+      duration: 2000
+      gain: 8000
+      start_magnitude: 1000
+      end_magnitude: 8000
+
+  # Wheel lockup - intense vibration
+
+  - effect:
+      type: periodic
+      duration: 800
+      gain: 10000
+      wave_type: sawtooth_up
+      magnitude: 8000
+      period: 60
+
+  # Center return after braking
+
+  - effect:
+      type: condition
+      duration: 1000
+      gain: 7000
+      condition_type: spring
+      x_axis:
+        positive_coefficient: 7000
+        negative_coefficient: 7000
+        dead_band: 300
+

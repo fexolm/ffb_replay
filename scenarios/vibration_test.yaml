@@ -1,0 +1,76 @@
+# Test of various periodic effects
+name: "Periodic Vibrations"
+description: "Demonstration of all periodic wave types"
+loop_forever: false
+repeat_count: 2
+
+steps:
+  # Sine - smooth wave
+  - effect:
+      type: periodic
+      duration: 2000
+      gain: 7000
+      wave_type: sine
+      magnitude: 5000
+      period: 200
+
+  # Square - sharp transitions
+
+  - effect:
+      type: periodic
+      duration: 2000
+      gain: 6000
+      wave_type: square
+      magnitude: 5000
+      period: 200
+
+  # Triangle - linear slopes
+
+  - effect:
+      type: periodic
+      duration: 2000
+      gain: 7000
+      wave_type: triangle
+      magnitude: 5000
+      period: 200
+
+  # Sawtooth up
+
+  - effect:
+      type: periodic
+      duration: 2000
+      gain: 6500
+      wave_type: sawtooth_up
+      magnitude: 5000
+      period: 200
+
+  # Sawtooth down
+
+  - effect:
+      type: periodic
+      duration: 2000
+      gain: 6500
+      wave_type: sawtooth_down
+      magnitude: 5000
+      period: 200
+
+  # Fast vibration
+
+  - effect:
+      type: periodic
+      duration: 1500
+      gain: 8000
+      wave_type: sine
+      magnitude: 6000
+      period: 50
+
+  # Slow wave
+
+  - effect:
+      type: periodic
+      duration: 3000
+      gain: 7000
+      wave_type: sine
+      magnitude: 7000
+      period: 500
+

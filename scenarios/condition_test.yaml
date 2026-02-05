@@ -1,0 +1,69 @@
+# Condition effects test
+name: "Condition Effects"
+description: "Demonstration of spring, damper, friction and inertia"
+loop_forever: false
+repeat_count: 1
+
+steps:
+  # Strong centering spring
+  - effect:
+      type: condition
+      duration: 3000
+      gain: 10000
+      condition_type: spring
+      x_axis:
+        offset: 0
+        positive_coefficient: 9000
+        negative_coefficient: 9000
+        positive_saturation: 10000
+        negative_saturation: 10000
+        dead_band: 200
+
+  # Moderate damper
+
+  - effect:
+      type: condition
+      duration: 3000
+      gain: 8000
+      condition_type: damper
+      x_axis:
+        positive_coefficient: 7000
+        negative_coefficient: 7000
+        positive_saturation: 9000
+        negative_saturation: 9000
+
+  # Friction
+
+  - effect:
+      type: condition
+      duration: 3000
+      gain: 7000
+      condition_type: friction
+      x_axis:
+        positive_coefficient: 6000
+        negative_coefficient: 6000
+
+  # Inertia
+
+  - effect:
+      type: condition
+      duration: 3000
+      gain: 8000
+      condition_type: inertia
+      x_axis:
+        positive_coefficient: 7000
+        negative_coefficient: 7000
+
+  # Combination: spring with offset
+
+  - effect:
+      type: condition
+      duration: 3000
+      gain: 8000
+      condition_type: spring
+      x_axis:
+        offset: 2000
+        positive_coefficient: 8000
+        negative_coefficient: 8000
+        dead_band: 500
+
